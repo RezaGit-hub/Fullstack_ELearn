@@ -1,1 +1,73 @@
 cd "/c/Users/rezam/OneDrive/Desktop/Javascript/projekt1"
+
+
+git checkout -b feature/header
+# Code ändern
+git add .
+git commit -m "Header layout implemented"
+git checkout main
+git merge feature/header
+git push
+
+
+npx create-react-app my-app
+cd my app
+npm start
+
+
+<p>Webseite wurde von  <strong><a href="https://github.com/RezaGit-hub">Reza(GitHub)</a></strong> entwickelt</p>
+
+A) Docker Start (Shell / Bash / VS Code Terminal)
+docker run --name krankenhaus-db `
+-e POSTGRES_USER=postgres `
+-e POSTGRES_PASSWORD=postgres `
+-e POSTGRES_DB=krankenhaus `
+-p 5432:5432 `
+-d postgres
+
+B) Python Projekt Setup
+python -m venv venv
+venv\Scripts\activate
+
+C) .env Datei
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_NAME=Krankenhaus
+
+
+database.py → nur Verbindung
+
+models/ → Tabellenstruktur
+
+services/ → Business-Logik
+
+routes/ → API (kommt später)
+
+In DB gehen:
+docker exec -it krankenhaus-db psql -U postgres -d Krankenhaus
+\dt
+DROP TABLE IF EXISTS patient, nurse, doctor, roles, disease, medikament, section CASCADE;
+\q
+
+
+
+docker pro erstelle: docker-compose.yml:
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: medical_db
+    restart: always
+    environment:
+      POSTGRES_USER: medical_user
+      POSTGRES_PASSWORD: medical_password
+      POSTGRES_DB: medical_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
